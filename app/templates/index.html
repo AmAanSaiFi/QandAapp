@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">Home</li>
+{% endblock %}
+
+{%  block content %}
+<section id="titles">
+    <h1 class="mt-3">
+        Available Titles.
+    </h1>
+    <ul>
+        {% for title in t %}
+        <li>
+            <a href="{%url 'title_ques' title.pk  %}">
+                <img class="w-100" src="{{title.img}}" alt="image">
+                <h4>{{title.name}}</h4>
+                <span class="text-muted">{{title.desc}}</span>
+                <br>
+                
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for i in ques_count %}
+        <li>
+            <span class="text-muted">Total no. of questions are : {{i}} </span>
+        </li>
+        {% endfor%}
+    </ul>
+</section>
+
+
+{% endblock %}

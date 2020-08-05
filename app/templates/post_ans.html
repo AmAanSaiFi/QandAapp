@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page">
+    <a href="{% url 'index' %}">Home</a>
+</li>
+<li class="breadcrumb-item" aria-current="page">
+    <a href="{% url 'title_ques' ques.title.pk %}">{{ques.title.name}}</a>
+</li>
+<li class="breadcrumb-item" aria-current="page">
+    <a href="{% url 'show_ans' ques.title.pk ques.pk %}">See Answers</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page"> Post Answer </li>
+
+{% endblock %}
+
+{% block content %}
+
+<section id="new_ques">
+
+    <h4>{{ques.ques}}</h4>
+
+    <form method='post'>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <button type="submit" class="btn btn-primary">Post Answer</button>
+        <hr>
+    </form>
+
+</section>
+
+{% endblock %}

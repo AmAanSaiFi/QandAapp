@@ -1,0 +1,17 @@
+#titles ul{
+    display: flex;
+    justify-content: space-between ;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+#titles ul li{
+    width: 23% ;
+    border:1px solid gray;
+    border-radius: 5px ;
+    padding: 10px ;
+}
+#titles ul li img{
+    height: 200px ;
+    
+}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page">
+    <a href="{%url 'index'%}">Home</a>
+</li>
+<li class="breadcrumb-item " aria-current="page">
+    <a href="{% url 'title_ques' ques.title.pk %}">{{ques.title.name}}</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page"> Post Answer </li>
+{% endblock %}
+
+{%  block content %}
+
+<section id="new_ques">
+    <h4>{{ques.ques}}</h4>
+    <div class="mt-3 mb-3">
+        <a href="{% url 'post_ans' ques.title.pk ques.pk %}" class="btn btn-primary">Post your Answer</a>
+    </div>
+    
+    {% for ans in ques.posts.all %}
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2">
+                    <img class="w-100" src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png" alt="image">
+                    <small>
+                        Answers : {{ans.created_by.posts.count}}
+                    </small>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>{{ans.created_by.username}}</strong>
+                        </div>
+                        <div class="col-6 text-right">
+                            <small>{{ans.created_at}}</small>
+                        </div>
+                    </div>
+
+                    {{ans.ans}}
+
+                    {% if ans.created_by == user %}
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-primary">Edit your answer</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock %}

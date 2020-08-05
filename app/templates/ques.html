@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page">
+    <a href="{%url 'index'%}">Home</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">{{t}}</li>
+{% endblock %}
+
+{%  block content %}
+<section id="questions">
+    <h1>
+        Available Questions
+    </h1>
+    <h4>{{t.name}}</h4>
+    <ul>
+        {% for ques in ques %}
+        <li>
+            <a href="{% url 'show_ans' ques.title.pk ques.pk %}">   
+                <h6>{{ques.ques}}</h6>
+                <div class="row-justify-content-between mt-2">
+                    <div class="col-md-4">
+                        <span class="text-muted">Replies : 0</span>
+                        <span class="text-muted">Views : 0</span>
+                    </div>
+                </div>
+                <div class="row-justify-content-between mt-2">
+                    <div class="col-md-5">
+                        <span class="text-muted">Started by - {{ques.started_by}}</span>
+                        <span class="text-muted">| On {{ques.last_updated}}</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'new_ques' t.pk%}" class="btn btn-primary">New Question</a>
+</section>
+
+{% endblock %}
